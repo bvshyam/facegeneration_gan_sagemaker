@@ -1,0 +1,6 @@
+pandas
+numpy
+sklearn
+beautifulsoup4
+html5lib
+matplotlib
