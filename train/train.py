@@ -300,10 +300,9 @@ def train(D, G, z_size, train_loader, epochs, d_optimizer, g_optimizer, train_on
         if train_on_gpu:
             fixed_z = fixed_z.cuda()
             
-        
         samples_z = G(fixed_z)
         samples.append(samples_z)
-        # G.train() # back to training mode
+        G.train() # back to training mode
     
     # _ = view_samples(-1, samples_z)
     
@@ -381,7 +380,7 @@ if __name__ == '__main__':
     train(D, G, args.z_size, train_loader, args.epochs, d_optimizer, g_optimizer, device)
 
 	# Save the model parameters
-    G_path = os.path.join(args.model_dir, 'generator_model.pt')
+    G_path = os.path.join(args.model_dir, 'generator_model_main.pt')
     with open(G_path, 'wb') as f:
         torch.save(G.cpu().state_dict(), f)
 
