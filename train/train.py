@@ -315,7 +315,7 @@ def train(D, G, z_size, train_loader, epochs, d_optimizer, g_optimizer, train_on
     with open('train_samples.pkl', 'wb') as f:
         pkl.dump(samples, f)
         
-        
+    return G
 
 
 if __name__ == '__main__':
@@ -377,7 +377,7 @@ if __name__ == '__main__':
     d_optimizer = optim.Adam(D.parameters(), args.lr, [args.beta1, args.beta2])
     g_optimizer = optim.Adam(G.parameters(), args.lr, [args.beta1, args.beta2])
     
-    train(D, G, args.z_size, train_loader, args.epochs, d_optimizer, g_optimizer, device)
+    G = train(D, G, args.z_size, train_loader, args.epochs, d_optimizer, g_optimizer, device)
 
 	# Save the model parameters
     G_path = os.path.join(args.model_dir, 'generator_model_main.pt')
